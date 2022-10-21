@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+             x:Class="Street.Views.Page1">
+    <ContentPage.Content>
+        <!--<StackLayout>
+            <maps:Map/>
+        </StackLayout>-->
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <maps:Map
+                x:Name="MyMap"
+                IsShowingUser="true"
+                MapType="Street"
+                MapClicked="MyMap_MapClicked"
+                Grid.ColumnSpan="3"
+                Grid.RowSpan="3"/>
+            <Button Grid.Row="2" Grid.Column="0" Text="Click Me" Image="MenuLogo.png"  HorizontalOptions="Center" Margin="20,150,10,50"  />
+            <Button Grid.Row="2" Grid.Column="2" Text="Activity" Image="MenuLogo.png"  HorizontalOptions="End" Margin="10,150,20,50"  />
+            <Button Grid.Row="2" Grid.Column="1" Text="Add Spot" Image="MenuLogo.png"  HorizontalOptions="End" Margin="10,150,10,50" />
+            <Button Grid.Row="0" Grid.Column="2" Text="Groups" Image="MenuLogo.png"  HorizontalOptions="End" VerticalOptions="StartAndExpand" 
+                    Margin="20,20,20,10" Clicked="OnGroupClicked" />
+
+        </Grid>
+
+
+    </ContentPage.Content>
+</ContentPage>

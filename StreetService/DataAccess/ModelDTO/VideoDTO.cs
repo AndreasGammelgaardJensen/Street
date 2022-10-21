@@ -1,0 +1,10 @@
+﻿namespace StreetService.DataAccess.ModelDTO
+{
+    public class VideoDTO
+    {
+        public int Id { get; set; }
+        public string RemoteUrl { get; set; }
+        public UserDTO Creator { get; set; }
+        public long Created { get; set; }
+    }
+}
