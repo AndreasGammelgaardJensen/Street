@@ -1,5 +1,5 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<xct:Popup xmlns="http://xamarin.com/schemas/2014/forms"
+﻿<?xml version="1.0" encoding="UTF-8"?>  
+    <xct:Popup xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:xct="http://xamarin.com/schemas/2020/toolkit" 
             xmlns:local="clr-namespace:Street.ViewModels" 
@@ -32,7 +32,7 @@
         </CollectionView>
     <!--</RefreshView>-->
 
-        <Button Text="Add Group"/>
+        <Button Text="Add Group" Command="{Binding AddGroupClicked}"/>
     </StackLayout>
 
 

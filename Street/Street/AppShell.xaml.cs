@@ -18,9 +18,11 @@ namespace Street
             InitializeComponent();
             Routing.RegisterRoute(nameof(ItemDetailPage), typeof(ItemDetailPage));
             Routing.RegisterRoute(nameof(NewItemPage), typeof(NewItemPage));
-            Routing.RegisterRoute(nameof(TestPage), typeof(TestPage));
-            Routing.RegisterRoute(nameof(Page1), typeof(Page1));
-            Routing.RegisterRoute(nameof(Groups), typeof(Groups));
+            Routing.RegisterRoute(nameof(MapView), typeof(MapView));
+            Routing.RegisterRoute(nameof(AddGroupPage), typeof(AddGroupPage));
+            Routing.RegisterRoute(nameof(FriendSelectorPage), typeof(FriendSelectorPage));
+            Routing.RegisterRoute(nameof(AddSpotPage), typeof(AddSpotPage));
+
             Init();
             
             
@@ -29,12 +31,12 @@ namespace Street
 
         private async void OnMenuItemClicked(object sender, EventArgs e)
         {
-            await Shell.Current.GoToAsync("//Page1");
+            await Shell.Current.GoToAsync("//MapView");
         }
 
         private async void Init()
         {
-             DataStore.Init();
+            DataStore.Init();
             var currentGroup = await GroupStore.GetPublicGroupAsync();
             var groupe = currentGroup == null ? new GroupDTO() : currentGroup;
             DataStore.SetSelectedGroup(currentGroup);

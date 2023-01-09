@@ -8,6 +8,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Xamarin.CommunityToolkit.UI.Views;
 using Xamarin.Forms;
 
@@ -18,11 +19,12 @@ namespace Street.ViewModels
         public IGroupStore GroupStore => DependencyService.Get<IGroupStore>();
         private GroupDTO _selectedItem;
         public ObservableCollection<GroupDTO> Groups { get; }
-        public Command LoadGroupsCommand { get; }
         public Command<GroupDTO> ItemTapped { get; }
         private ItemEvents _itemEvents;
 
         private Popup _popup;
+
+        public ICommand AddGroupClicked { private set; get; }
 
         public ShowGroupsViewModel(ItemEvents itemEvents, Popup popup)
         {
@@ -33,6 +35,13 @@ namespace Street.ViewModels
             ExecuteLoadGroupsCommand();
 
             ItemTapped = new Command<GroupDTO>(OnItemSelected);
+
+            AddGroupClicked = new Command(
+                execute: async () =>
+                {
+                    _popup.Dismiss(null);
+                    await Shell.Current.GoToAsync(nameof(AddGroupPage));
+                });
         }
 
 
@@ -68,11 +77,12 @@ namespace Street.ViewModels
             if (item == null)
                 return;
 
-            _itemEvents.OnIncommingSpots(new IncommingSpotsArgs(item.Spots));
+            _itemEvents.OnCurrentGroup(new CurrentGroupArgs(item));
             // This will push the ItemDetailPage onto the navigation stack
-            await Shell.Current.GoToAsync($"{nameof(ItemDetailPage)}?{nameof(ItemDetailViewModel.ItemId)}={item.Id}");
+            //await Shell.Current.GoToAsync($"{nameof(ItemDetailPage)}?{nameof(ItemDetailViewModel.ItemId)}={item.Id}");
+            await Shell.Current.GoToAsync("//MapView");
 
-            if(_popup != null)
+            if (_popup != null)
                 _popup.Dismiss(null);
         }
     }

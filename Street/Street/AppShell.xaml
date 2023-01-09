@@ -5,23 +5,23 @@
        Title="Street"
        x:Class="Street.AppShell">
 
-
     <TabBar>
         <Tab Title="Map">
-            <ShellContent Route="Page1" ContentTemplate="{DataTemplate local:Page1}" />
+            <ShellContent Route="MapView" ContentTemplate="{DataTemplate local:MapView}" />
         </Tab>
-        <Tab Title="Group">
-            <ShellContent Route="Groups" ContentTemplate="{DataTemplate local:Groups}" />
-
+ 
+        <Tab Title="Add Spot">
+            <ShellContent Route="AddSpot" ContentTemplate="{DataTemplate local:AddSpotPage}" />
+        
         </Tab>
-        <Tab Title="Add spot">
+        <!--<Tab Title="Add group">
+            <ShellContent Route="AddGroup" ContentTemplate="{DataTemplate local:AddGroupPage}" FlyoutItemIsVisible="false" IsVisible="false" />
+        </Tab>-->
+        <!--<Tab Title="Settings">
             <ShellContent Route="AboutPage" ContentTemplate="{DataTemplate local:AboutPage}" />
-        </Tab>
-        <Tab Title="Settings">
-            <ShellContent Route="AboutPage" ContentTemplate="{DataTemplate local:AboutPage}" />
-        </Tab>
+        </Tab>-->
         <Tab Title="Events">
-            <ShellContent Route="AboutPage" ContentTemplate="{DataTemplate local:AboutPage}" />
+            <ShellContent Route="FriendSelectorPage" ContentTemplate="{DataTemplate local:FriendSelectorPage}" />
         </Tab>
     </TabBar>
     <!--

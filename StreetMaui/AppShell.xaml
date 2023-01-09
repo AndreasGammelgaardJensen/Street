@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="StreetMaui.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:StreetMaui"
+    >
+
+    <TabBar>
+        <Tab Title="Map">
+            <ShellContent Route="MapPage" ContentTemplate="{DataTemplate local:MapPage}" />
+        </Tab>
+        <!--<Tab Title="Group">
+            <ShellContent Route="Groups" ContentTemplate="{DataTemplate local:Groups}" />
+        </Tab>--><!--
+        <Tab Title="Add group">
+            <ShellContent Route="AddGroup" ContentTemplate="{DataTemplate local:AddGroupPage}" />
+        </Tab>
+        <Tab Title="Settings">
+            <ShellContent Route="AboutPage" ContentTemplate="{DataTemplate local:AboutPage}" />
+        </Tab>
+        <Tab Title="Events">
+            <ShellContent Route="FriendSelectorPage" ContentTemplate="{DataTemplate local:FriendSelectorPage}" />
+        </Tab>-->
+    </TabBar>
+
+    <!--<FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
+        <Tab Title="Domestic"
+             Icon="paw.png">
+            <ShellContent
+                Title="Home"
+                ContentTemplate="{DataTemplate local:MainPage}"
+                Route="MainPage" />
+
+                    <ShellContent
+                Title="Home"
+                ContentTemplate="{DataTemplate local: MapView}"
+                Route="Views/MainPage" />
+        </Tab>
+    </FlyoutItem>-->
+    
+
+</Shell>

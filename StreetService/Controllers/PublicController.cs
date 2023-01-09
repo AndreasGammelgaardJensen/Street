@@ -1,6 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using StreetService.DataAccess.ModelDTO;
-using StreetService.DataAccess.Repository;
+﻿using CoreStreet.ModelDTO;
+using CoreStreet.Repository;
+using Microsoft.AspNetCore.Mvc;
 
 namespace StreetService.Controllers
 {

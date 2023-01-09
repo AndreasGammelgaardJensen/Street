@@ -9,6 +9,7 @@ namespace Street.Events
     {
         public event EventHandler<IncommingSpotsArgs> IncommingSpots;
         public event EventHandler<IncommingGroupsArgs> IncommingGroups;
+        public event EventHandler<IncommingGroupArgs> IncommingGroup;
         public event EventHandler<IncommingSpotsArgs> IncommingUsers;
         public event EventHandler<CurrentGroupArgs> CurrentGroup;
 
@@ -24,6 +25,13 @@ namespace Street.Events
             EventHandler<IncommingGroupsArgs> handler = IncommingGroups;
             handler?.Invoke(this, e);
         }
+
+        public virtual void OnIncommingGroup(IncommingGroupArgs e)
+        {
+            EventHandler<IncommingGroupArgs> handler = IncommingGroup;
+            handler?.Invoke(this, e);
+        }
+
 
         public virtual void OnCurrentGroup(CurrentGroupArgs e)
         {
@@ -54,6 +62,18 @@ namespace Street.Events
         {
             CurrentGroup = group;
         }
+    }
+
+    public class IncommingGroupArgs : EventArgs
+    {
+        public GroupDTO Group { get; set; }
+
+        public IncommingGroupArgs(GroupDTO group)
+        {
+            Group = group;
+        }
+
+        public List<SpotDTO> Spots { get; set; }
     }
 
     public class IncommingGroupsArgs : EventArgs

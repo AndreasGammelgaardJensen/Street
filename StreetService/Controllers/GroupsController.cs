@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using CoreStreet.ModelDTO;
+using CoreStreet.Repository;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using StreetService.DataAccess.ModelDTO;
-using StreetService.DataAccess.Repository;
 
 namespace StreetService.Controllers
 {
@@ -20,10 +20,23 @@ namespace StreetService.Controllers
         [HttpGet(Name = "Groups")]
         public IActionResult Get()
         {
-            var group = _rep.GetGroup(1);
-
             var groups = _rep.GetGroups();
             return Ok(groups.ToList());
+        }
+
+        [HttpPost]
+        public IActionResult Add([FromBody] GroupDTO groupModel)
+        {
+            _rep.Add(groupModel);
+            return Ok();
+        }
+
+        [HttpDelete]
+        public IActionResult Delete(Guid id)
+        {
+            _rep.DeleteGroup(id);
+
+            return Ok();
         }
 
     }

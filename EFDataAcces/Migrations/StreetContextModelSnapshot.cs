@@ -24,14 +24,12 @@ namespace EFDataAcces.Migrations
 
             modelBuilder.Entity("EFDataAcces.Models.Group", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("uniqueidentifier");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<long>("Created")
-                        .HasColumnType("bigint");
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("IsPublic")
                         .HasColumnType("bit");
@@ -46,49 +44,24 @@ namespace EFDataAcces.Migrations
                     b.ToTable("Group");
                 });
 
-            modelBuilder.Entity("EFDataAcces.Models.GroupSpot", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("GroupId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SpotId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("GroupId");
-
-                    b.HasIndex("SpotId");
-
-                    b.ToTable("GroupSpot");
-                });
-
             modelBuilder.Entity("EFDataAcces.Models.Image", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<long>("Created")
                         .HasColumnType("bigint");
 
-                    b.Property<int>("CreatorId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("CreatorId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("RemoteUrl")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("SpotId")
-                        .HasColumnType("int");
+                    b.Property<Guid?>("SpotId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
@@ -101,43 +74,48 @@ namespace EFDataAcces.Migrations
 
             modelBuilder.Entity("EFDataAcces.Models.Spot", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("uniqueidentifier");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime2");
 
-                    b.Property<long>("Created")
-                        .HasColumnType("bigint");
-
-                    b.Property<int>("CreatorId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("CreatorId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasMaxLength(1000)
                         .HasColumnType("nvarchar(1000)");
 
-                    b.Property<decimal>("Latitude")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<Guid?>("GroupId")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<decimal>("Longitude")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double>("Latitude")
+                        .HasColumnType("float");
+
+                    b.Property<double>("Longitude")
+                        .HasColumnType("float");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("CreatorId");
+
+                    b.HasIndex("GroupId");
 
                     b.ToTable("Spot");
                 });
 
             modelBuilder.Entity("EFDataAcces.Models.User", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -166,29 +144,6 @@ namespace EFDataAcces.Migrations
                     b.ToTable("User");
                 });
 
-            modelBuilder.Entity("EFDataAcces.Models.UserGroup", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("GroupId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("GroupId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("UserGroup");
-                });
-
             modelBuilder.Entity("EFDataAcces.Models.Video", b =>
                 {
                     b.Property<int>("Id")
@@ -200,15 +155,15 @@ namespace EFDataAcces.Migrations
                     b.Property<long>("Created")
                         .HasColumnType("bigint");
 
-                    b.Property<int>("CreatorId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("CreatorId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("RemoteUrl")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("SpotId")
-                        .HasColumnType("int");
+                    b.Property<Guid?>("SpotId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
@@ -219,23 +174,19 @@ namespace EFDataAcces.Migrations
                     b.ToTable("Video");
                 });
 
-            modelBuilder.Entity("EFDataAcces.Models.GroupSpot", b =>
+            modelBuilder.Entity("GroupUser", b =>
                 {
-                    b.HasOne("EFDataAcces.Models.Group", "Group")
-                        .WithMany()
-                        .HasForeignKey("GroupId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Property<Guid>("GroupsId")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.HasOne("EFDataAcces.Models.Spot", "Spot")
-                        .WithMany()
-                        .HasForeignKey("SpotId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Property<Guid>("UsersId")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Navigation("Group");
+                    b.HasKey("GroupsId", "UsersId");
 
-                    b.Navigation("Spot");
+                    b.HasIndex("UsersId");
+
+                    b.ToTable("GroupUser");
                 });
 
             modelBuilder.Entity("EFDataAcces.Models.Image", b =>
@@ -246,15 +197,11 @@ namespace EFDataAcces.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("EFDataAcces.Models.Spot", "Spot")
-                        .WithMany()
-                        .HasForeignKey("SpotId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.HasOne("EFDataAcces.Models.Spot", null)
+                        .WithMany("Images")
+                        .HasForeignKey("SpotId");
 
                     b.Navigation("Creator");
-
-                    b.Navigation("Spot");
                 });
 
             modelBuilder.Entity("EFDataAcces.Models.Spot", b =>
@@ -265,26 +212,11 @@ namespace EFDataAcces.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("EFDataAcces.Models.Group", null)
+                        .WithMany("Spots")
+                        .HasForeignKey("GroupId");
+
                     b.Navigation("Creator");
-                });
-
-            modelBuilder.Entity("EFDataAcces.Models.UserGroup", b =>
-                {
-                    b.HasOne("EFDataAcces.Models.Group", "Group")
-                        .WithMany()
-                        .HasForeignKey("GroupId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("EFDataAcces.Models.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Group");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("EFDataAcces.Models.Video", b =>
@@ -295,15 +227,38 @@ namespace EFDataAcces.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("EFDataAcces.Models.Spot", "Spot")
+                    b.HasOne("EFDataAcces.Models.Spot", null)
+                        .WithMany("Videos")
+                        .HasForeignKey("SpotId");
+
+                    b.Navigation("Creator");
+                });
+
+            modelBuilder.Entity("GroupUser", b =>
+                {
+                    b.HasOne("EFDataAcces.Models.Group", null)
                         .WithMany()
-                        .HasForeignKey("SpotId")
+                        .HasForeignKey("GroupsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Creator");
+                    b.HasOne("EFDataAcces.Models.User", null)
+                        .WithMany()
+                        .HasForeignKey("UsersId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
 
-                    b.Navigation("Spot");
+            modelBuilder.Entity("EFDataAcces.Models.Group", b =>
+                {
+                    b.Navigation("Spots");
+                });
+
+            modelBuilder.Entity("EFDataAcces.Models.Spot", b =>
+                {
+                    b.Navigation("Images");
+
+                    b.Navigation("Videos");
                 });
 #pragma warning restore 612, 618
         }

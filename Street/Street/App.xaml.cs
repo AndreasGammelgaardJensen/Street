@@ -1,5 +1,6 @@
 ﻿using Street.Events;
 using Street.Services;
+using Street.Services.Interfaces;
 using Street.Views;
 using System;
 using System.Diagnostics;
@@ -15,7 +16,10 @@ namespace Street
         {
             InitializeComponent();
 
-            DependencyService.Register<WebAPIService>();
+            DependencyService.Register<GroupAPIService>();
+            DependencyService.Register<BaseWebApi>();
+            DependencyService.Register<IUserStore, UserStore>();
+            DependencyService.Register<ISpotStore, SpotApiService>();
             MainPage = new AppShell();
             Debug.WriteLine("Done ShellInit");
         }

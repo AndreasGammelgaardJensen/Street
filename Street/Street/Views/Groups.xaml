@@ -7,7 +7,7 @@
     <ContentPage.Content>
         <StackLayout>
             <!--<RefreshView x:DataType="local:ShowGroupsViewModel" Command="{Binding LoadGroupsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">-->
-            <CollectionView x:Name="ItemsListView"
+            <!--<CollectionView x:Name="ItemsListView"
                 ItemsSource="{Binding Groups}"
                 SelectionMode="None">
                 <CollectionView.ItemTemplate>
@@ -27,7 +27,7 @@
                         </StackLayout>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
-            </CollectionView>
+            </CollectionView>-->
             <!--</RefreshView>-->
 
             <Button Text="Add Group"/>

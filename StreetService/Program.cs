@@ -1,6 +1,8 @@
+using CoreStreet;
+using CoreStreet.AutoMapper;
+using CoreStreet.Repository;
 using EFDataAcces.DataAccess;
 using Microsoft.EntityFrameworkCore;
-using StreetService.DataAccess.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,7 +17,10 @@ builder.Services.AddDbContext<StreetContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("Default"));
 });
 
-builder.Services.AddScoped<IGroupRepository, StreetRepository.GroupRepositoryMock>();
+builder.Services.AddScoped<IGroupRepository, GroupRepository>();
+builder.Services.AddScoped<ISpotRepository, SpotRepositoryMock>();
+builder.Services.AddSingleton<SeedData>();
+builder.Services.AddAutoMapper(typeof(AutoMapperConfig).Assembly);
 
 var app = builder.Build();
 

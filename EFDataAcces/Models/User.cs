@@ -4,7 +4,7 @@ namespace EFDataAcces.Models
 {
     public class User
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         [Required]
         [MaxLength(200)]
         public string Email { get; set; }
@@ -16,6 +16,8 @@ namespace EFDataAcces.Models
         public byte[] PasswordHash { get; set; }
         public byte[] PasswordSalt { get; set; }
         public int Posts { get; set; }
+
+        public List<Group> Groups { get; set; }
 
     }
 }

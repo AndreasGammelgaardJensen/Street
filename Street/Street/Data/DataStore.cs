@@ -11,12 +11,13 @@ namespace Street
     {
         private static List<IObserver<GroupDTO>> observers;
 
-        private static ItemEvents _itemEvents = new ItemEvents();
+        private static ItemEvents _itemEvents;
         private static List<GroupDTO> _groups { get; set; }
         private static GroupDTO _selectedGroup { get; set; }
 
         public static void Init()
         {
+            GetItemEvent();
             observers = new List<IObserver<GroupDTO>>();
 
             _itemEvents.CurrentGroup += UpdateStore;
@@ -36,6 +37,12 @@ namespace Street
 
         public static ItemEvents GetItemEvent()
         {
+
+            if(_itemEvents == null)
+            {
+                _itemEvents =  new ItemEvents();
+            }
+
             return _itemEvents;
         }
 

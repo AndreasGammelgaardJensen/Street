@@ -9,13 +9,18 @@ namespace EFDataAcces.Models
 {
     public class Spot
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
+        public string Name { get; set; }
         public double Latitude { get; set; }
         public double Longitude { get; set; }
         public User Creator { get; set; }
-        public long Created { get; set; }
+        public DateTime Created { get; set; }
         [Required]
         [MaxLength(1000)]
         public string Description { get; set; }
+
+        public List<Image> Images { get; set; }
+
+        public List<Video> Videos { get; set; }
     }
 }

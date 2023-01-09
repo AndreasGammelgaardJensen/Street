@@ -1,5 +1,5 @@
+using CoreStreet.Repository;
 using Microsoft.AspNetCore.Mvc;
-using StreetService.DataAccess.Repository;
 
 namespace StreetService.Controllers
 {
@@ -24,10 +24,6 @@ namespace StreetService.Controllers
         [HttpGet(Name = "GetWeatherForecast")]
         public IEnumerable<WeatherForecast> Get()
         {
-            var group = _rep.GetGroup(1);
-
-            var groups = _rep.GetGroups();
-
 
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {

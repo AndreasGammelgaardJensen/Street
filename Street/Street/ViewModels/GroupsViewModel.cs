@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Text;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace Street.ViewModels
@@ -18,6 +19,7 @@ namespace Street.ViewModels
         public ObservableCollection<GroupDTO> Groups { get; }
         public Command LoadGroupsCommand { get; }
         public Command<GroupDTO> ItemTapped { get; }
+
         public GroupsViewModel()
         {
             Groups = new ObservableCollection<GroupDTO>();
@@ -60,7 +62,7 @@ namespace Street.ViewModels
             DataStore.SetSelectedGroup(item);
             // This will push the ItemDetailPage onto the navigation stack
             //await Shell.Current.GoToAsync($"{nameof(ItemDetailPage)}?{nameof(ItemDetailViewModel.ItemId)}={item.Id}");
-            await Shell.Current.GoToAsync($"{nameof(Page1)}");
+            await Shell.Current.GoToAsync($"{nameof(MapView)}");
             //Shell.Current.Navigation.PopAsync(true);
 
         }
