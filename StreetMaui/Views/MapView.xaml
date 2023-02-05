@@ -1,19 +1,37 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:maps="clr-namespace:Microsoft.Maui.Controls.Maps;assembly=Microsoft.Maui.Controls.Maps"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:maps="clr-namespace:Microsoft.Maui.Controls.Maps;assembly=Microsoft.Maui.Controls.Maps"
              x:Class="StreetMaui.Views.MapView"
              Title="MapView">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-
+    <Shell.TitleView>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Button Grid.Row="0" Grid.Column="2" Text="Groups" Clicked="OnGroupClicked" HorizontalOptions="End" />
+            <Label x:Name="selectedGroupName"
+                Grid.Column="0"
+                Grid.Row="0"
+                TextColor="White"
+                VerticalOptions="CenterAndExpand"
+                IsVisible="true"
+            />
+        </Grid>
+    </Shell.TitleView>
+    
+    <StackLayout>
+        
+        
         <maps:Map
                 x:Name="MyMap"
                 IsShowingUser="true"
                 MapType="Street"
                 />
-    </VerticalStackLayout>
+    </StackLayout>
 </ContentPage>

@@ -4,11 +4,12 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:StreetMaui"
+    xmlns:views="clr-namespace:StreetMaui.Views"
     >
 
     <TabBar>
         <Tab Title="Map">
-            <ShellContent Route="MapPage" ContentTemplate="{DataTemplate local:MapPage}" />
+            <ShellContent Route="MapView" ContentTemplate="{DataTemplate views:MapView}" />
         </Tab>
         <!--<Tab Title="Group">
             <ShellContent Route="Groups" ContentTemplate="{DataTemplate local:Groups}" />

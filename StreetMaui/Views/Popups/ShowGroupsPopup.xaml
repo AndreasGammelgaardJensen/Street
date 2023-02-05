@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<toolkit:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+               xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+               xmlns:local="clr-namespace:Street.ViewModels" 
+               xmlns:model="clr-namespace:Street.Models"
+               x:Class="StreetMaui.Views.Popups.ShowGroupsPopup"
+               Size="300,600">
+    <StackLayout>
+        
+    
+    <ScrollView>
+        <CollectionView x:Name="ItemsListView"
+                ItemsSource="{Binding Groups}"
+                SelectionMode="None"
+                        HeightRequest="500">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout Padding="10" x:DataType="model:GroupDTO">
+                        <Label Text="{Binding Name}" 
+                            LineBreakMode="NoWrap" 
+                            Style="{DynamicResource ListItemTextStyle}" 
+                            FontSize="16" />
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer 
+                                NumberOfTapsRequired="1"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type local:ShowGroupsViewModel}}, Path=ItemTapped}"		
+                                CommandParameter="{Binding .}">
+                            </TapGestureRecognizer>
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </ScrollView>
+    <!--<RefreshView x:DataType="local:ShowGroupsViewModel" Command="{Binding LoadGroupsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">-->
+        
+    <!--</RefreshView>-->
+
+    <Button Text="Add Group" Command="{Binding AddGroupClicked}"/>
+
+    </StackLayout>
+
+</toolkit:Popup>

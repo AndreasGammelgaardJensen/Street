@@ -1,4 +1,7 @@
-﻿namespace StreetMaui
+﻿using CommunityToolkit.Maui;
+using Microsoft.Extensions.Logging;
+
+namespace StreetMaui
 {
     public static class MauiProgram
     {
@@ -8,11 +11,16 @@
             builder
                 .UseMauiApp<App>()
                 .UseMauiMaps()
+                .UseMauiCommunityToolkit()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
+           
+#if DEBUG
+            builder.Logging.AddDebug();
+#endif
 
             return builder.Build();
         }
