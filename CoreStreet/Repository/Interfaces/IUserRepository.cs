@@ -1,4 +1,5 @@
-﻿using EFDataAcces.Models;
+﻿using CoreStreet.ModelDTO;
+using EFDataAcces.Models;
 
 namespace CoreStreet.Repository
 {
@@ -7,5 +8,8 @@ namespace CoreStreet.Repository
         public ICollection<User> GetUsers();
         public User GetUser();
         public void DeleteUser();
+        public bool IsUserUnique(string username);
+        Task<LoginResponseDTO> Login(LoginRequestDTO loginRequestDTO);
+        Task<UserDTO> Register(RegistrationRequestDTO registrationRequestDTO);
     }
 }
