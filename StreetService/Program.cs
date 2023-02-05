@@ -17,8 +17,9 @@ builder.Services.AddDbContext<StreetContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("Default"));
 });
 
-builder.Services.AddScoped<IGroupRepository, GroupRepository>();
+builder.Services.AddScoped<IGroupRepository, GroupRepositoryMock>();
 builder.Services.AddScoped<ISpotRepository, SpotRepositoryMock>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddSingleton<SeedData>();
 builder.Services.AddAutoMapper(typeof(AutoMapperConfig).Assembly);
 
