@@ -1,7 +1,7 @@
-﻿using CoreStreet.ModelDTO;
-using CoreStreet.Repository;
-using EFDataAcces.Models;
+﻿
 using Microsoft.AspNetCore.Mvc;
+using StreetService.ModelDTO;
+using StreetService.Repository;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 

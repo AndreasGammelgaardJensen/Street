@@ -1,5 +1,5 @@
-﻿using CoreStreet.ModelDTO;
-using CoreStreet.Repository;
+﻿using StreetService.ModelDTO;
+using StreetService.Repository;
 using Microsoft.AspNetCore.Mvc;
 
 namespace StreetService.Controllers

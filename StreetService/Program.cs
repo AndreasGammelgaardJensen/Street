@@ -1,8 +1,9 @@
-using CoreStreet;
-using CoreStreet.AutoMapper;
-using CoreStreet.Repository;
-using EFDataAcces.DataAccess;
+
 using Microsoft.EntityFrameworkCore;
+using StreetService;
+using StreetService.AutoMapper;
+using StreetService.DataAccess;
+using StreetService.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
