@@ -53,7 +53,7 @@ namespace CoreStreet.Repository
 
         public async Task<LoginResponseDTO> Login(LoginRequestDTO loginRequestDTO)
         {
-            var user = _dbContext.User.FirstOrDefault(x => x.Username.ToLower() == loginRequestDTO.UserName.ToLower() && x.PasswordHash == loginRequestDTO.Password);
+            var user = _dbContext.User.FirstOrDefault(x => x.Username.ToLower() == loginRequestDTO.UserName.ToLower());
 
             if(user == null)
             {
@@ -72,7 +72,7 @@ namespace CoreStreet.Repository
             {
                 Subject = new ClaimsIdentity(new Claim[]
                 {
-                    new Claim(ClaimTypes.Name, user.Id.ToString())
+                    new Claim(ClaimTypes.Name, user.Name)
                 }),
                 Expires = DateTime.UtcNow.AddDays(7),
                 SigningCredentials = new(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature),
@@ -98,7 +98,7 @@ namespace CoreStreet.Repository
                 Username = registrationRequestDTO.Username,
                 Id = new Guid(),
                 Name = registrationRequestDTO.Name,
-                PasswordHash = registrationRequestDTO.Password,
+                //PasswordHash = registrationRequestDTO.Password,
                 Email = registrationRequestDTO.Email,
                 Posts = 0,
             };

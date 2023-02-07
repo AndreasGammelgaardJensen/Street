@@ -13,6 +13,8 @@ namespace EFDataAcces.Models
         public string Username { get; set; }
         [Required]
         [MaxLength(100)]
+
+        public string Name {get; set; }
         public byte[] PasswordHash { get; set; }
         public byte[] PasswordSalt { get; set; }
         public int Posts { get; set; }
